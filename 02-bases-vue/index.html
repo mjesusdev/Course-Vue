@@ -5,17 +5,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vue.js Intro</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     <script src="https://unpkg.com/vue@next"></script>
 </head>
 
-<body>
-    <div id="myApp">
-        <h3>{{ quote }}</h3>
-        <blockquote> -{{ author }} </blockquote>
+<body style="background: #343a40">
+    <div class="container" id="myApp">
+        <h1 class="text-info mt-2">
+            Batman quotes 
+            <small>{{ newQuote }}</small>
+        </h1>
 
-        <button v-on:click="changeQuote">
-            Change quote
-        </button>
+        <input 
+            type="text" 
+            class="form-control" 
+            v-model="newQuote"
+            v-on:keypress.enter="addQuote"
+            style="background: #343a40">
+
+        <hr>
+
+        <ul style="color: white;">
+            <li v-for="({ quote, author }, index ) in quotes">
+                <span> {{ index + 1 }} - {{ quote }}</span>
+                <!-- <blockquote v-if="author">- {{ author }} </blockquote> -->
+                <blockquote v-show="author">- {{ author }} </blockquote>
+            </li>
+        </ul>
     </div>
 
     <script src="./app.js"></script>
