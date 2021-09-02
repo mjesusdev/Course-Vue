@@ -1,7 +1,10 @@
 <template>
   <div>
     <img alt="Vue logo" src="./assets/logo.png">
-    <Counter msg="Welcome to Your Vue.js App"/>
+
+    <!-- v-bind:start --> 
+    <Counter :start="100" />
+
   </div>
 </template>
 
