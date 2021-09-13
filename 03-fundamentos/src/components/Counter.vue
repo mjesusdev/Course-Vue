@@ -1,9 +1,10 @@
 <template>
   <div>
     <h2>{{ customTitle }}</h2>
-    <p data-testid="counter"> {{ counter }} <sup>2</sup> = {{ squareCounter }} </p>
+    <p> {{ counter }} <sup>2</sup> = {{ squareCounter }} </p>
+    <p data-testid="counter">{{ counter }}</p>
 
-    <div>
+    <div class="buttons-container">
       <button @click="increase">+1</button>
       <button @click="decrease">-1</button>
     </div>
@@ -20,7 +21,7 @@
             type: Number,
             default: 100,
             validator( value ) {
-              return value > 100
+              return value >= 0
             }
             /* required: true, */
           }

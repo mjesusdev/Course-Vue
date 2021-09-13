@@ -15,7 +15,7 @@ describe('Counter Component', () => {
     }) */
 
     test('h2 should have the value by default "Counter"', () => {
-        /* expect( wrapper.find('h10').exists() ).toBeTruthy() */
+        expect( wrapper.find('h2').exists() ).toBeTruthy()
 
         const h2Value = wrapper.find('h2').text()
 
@@ -55,9 +55,12 @@ describe('Counter Component', () => {
     })
 
     test('the prop title should be show', () => {
+        
+        const title = 'Hola Mundo'
+
         const wrapper = shallowMount( Counter, {
             props: {
-                title: 'Hola Mundo'
+                title
             }
         })
 
