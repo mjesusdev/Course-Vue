@@ -1,25 +1,30 @@
 <template>
-    <h1 v-if="!pokemon">Espere por favor...</h1>
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <h1 class="text-dark" v-if="!pokemon">Espere por favor...</h1>
 
-    <div v-else>
-        <h1>¿Quién es este pokémon?</h1>
+            <div v-else>
+                <img class="img-fluid" src="https://fontmeme.com/permalink/210916/cc36adbabb6cad4fddc1353029834b25.png" alt="" srcset="">
+                <h1 class="text-info mt-4">¿Quién es este pokémon?</h1>
 
-        <PokemonPicture 
-            :pokemonId="pokemon.id" 
-            :showPokemon="showPokemon"
-        />
+                <PokemonPicture 
+                    :pokemonId="pokemon.id" 
+                    :showPokemon="showPokemon"
+                />
 
-        <PokemonOptions 
-            :pokemons="pokemonArr"
-            @selection-pokemon="checkAnswer"
-        />
+                <PokemonOptions 
+                    :pokemons="pokemonArr"
+                    @selection-pokemon="checkAnswer"
+                />
 
-        <template v-if="showAnswer">
-            <h2 class="fade-in">{{ message }}</h2>
-            <button @click="newGame">
-                Nuevo Juego
-            </button>
-        </template>
+                <template v-if="showAnswer">
+                    <h2 class="fade-in mt-4 mb-4" :class="type">{{ message }}</h2>
+                    <button class="btn btn-success" @click="newGame">
+                        Nuevo Juego
+                    </button>
+                </template>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -56,8 +61,10 @@
 
                 if ( selectedId === this.pokemon.id ) {
                     this.message = `¡Correcto! es ${ this.pokemon.name } 🎉`
+                    this.type = 'text-success'
                 } else {
-                    this.message = `¡Incorrecto! era ${ this.pokemon.name } ❌`
+                    this.message = `¡Incorrecto! era ${ this.pokemon.name } 😅`
+                    this.type = 'text-danger'
                 }
             },
             newGame() {

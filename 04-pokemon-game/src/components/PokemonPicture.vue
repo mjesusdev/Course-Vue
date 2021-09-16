@@ -1,5 +1,5 @@
 <template>
-  <div class="pokemon-container">
+  <div class="pokemon-container mt-4 mb-4">
     <img :src="imgSrc" 
       class="hidden-pokemon"
       alt="pokemon">
