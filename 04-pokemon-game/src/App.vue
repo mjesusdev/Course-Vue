@@ -25,4 +25,8 @@ export default {
     text-align: center;
     margin-top: 60px;
   }
+
+  body {
+    background-image: url('/img/pokemon-ball.png');
+  }
 </style>
