@@ -1,11 +1,9 @@
 import pokemonApi from '@/api/pokemonApi'
 
 const getPokemons = () => {
-
     const pokemons = Array.from( Array(650) )
     
     return pokemons.map( ( _ , index ) => index + 1  )
-
 }
 
 const getPokemonOptions = async() => {
@@ -14,8 +12,7 @@ const getPokemonOptions = async() => {
 
     const pokemons = await getPokemonNames( mixedPokemons.splice(0,4) )
 
-    console.table(pokemons)
-    /* return pokemons */
+    return pokemons
 }
 
 const getPokemonNames = async( [a,b,c,d] = [] ) => {
