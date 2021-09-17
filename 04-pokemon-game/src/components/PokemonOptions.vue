@@ -1,7 +1,7 @@
 <template>
   <div class="options-container">
     <ul class="list-group">
-      <li class="list-group-item list-group-item-primary mb-2" v-for="pokemon in pokemons" 
+      <li class="list-group-item mb-2" v-for="pokemon in pokemons" 
         :key="pokemon.id"
         @click="$emit( 'selection-pokemon', pokemon.id )">
           {{ pokemon.name }}
@@ -24,14 +24,15 @@
 <style scoped>
   /* Pokemon Options */
   li {
-      cursor: pointer;
+      background: #f4a261 !important;
       border-top-width: thin !important;
+      font-weight: bold;
+      cursor: pointer;
       width: 25em;
   }
 
   li:hover {
-      
-      background-color: rgba(0, 0, 0, 0.05);
+      background: #b67d4f !important;
   }
 
   .options-container {
