@@ -4,7 +4,7 @@
             <h1 class="text-dark" v-if="!pokemon">Espere por favor...</h1>
 
             <div v-else>
-                <img class="img-fluid" src="https://fontmeme.com/permalink/210916/cc36adbabb6cad4fddc1353029834b25.png" alt="" srcset="">
+                <img class="img-fluid" src="/img/pokemon-game.png" alt="Imagen Pokemon Game">
                 <h1 class="text-info mt-4">¿Quién es este pokémon?</h1>
 
                 <PokemonPicture 
@@ -18,8 +18,8 @@
                 />
 
                 <template v-if="showAnswer">
-                    <h2 class="fade-in mt-4 mb-4" :class="type">{{ message }}</h2>
-                    <button class="btn btn-success" @click="newGame">
+                    <h2 class="fw-bold fade-in mt-4 mb-4" :class="type">{{ message }}</h2>
+                    <button class="btn btn-lg pb-3 btnNewGame" @click="newGame">
                         Nuevo Juego
                     </button>
                 </template>
@@ -31,9 +31,7 @@
 <script>
     import PokemonOptions from '@/components/PokemonOptions'
     import PokemonPicture from '@/components/PokemonPicture'
-
     import getPokemonOptions from '@/helpers/getPokemonOptions'
-
 
     export default {
         components: { PokemonOptions, PokemonPicture  },
@@ -56,14 +54,11 @@
                 this.showPokemon = true
                 this.showAnswer  = true
 
-                console.log(selectedId);
-                console.log(this.pokemon.id);
-
                 if ( selectedId === this.pokemon.id ) {
-                    this.message = `¡Correcto! es ${ this.pokemon.name } 🎉`
-                    this.type = 'text-success'
+                    this.message = `🎉 ¡Correcto! es ${ this.pokemon.name } 🎉`
+                    this.type = 'text-warning'
                 } else {
-                    this.message = `¡Incorrecto! era ${ this.pokemon.name } 😅`
+                    this.message = `😆 ¡Incorrecto! era ${ this.pokemon.name } 😅`
                     this.type = 'text-danger'
                 }
             },
@@ -80,3 +75,27 @@
         }
     }
 </script>
+
+<style scoped>
+    .btnNewGame {
+        background: #4baf8a !important;
+        border-color: #4baf8a !important;
+        color: #fff !important;
+    }
+
+    .btnNewGame:hover {
+        background: #24c88c !important;
+    }
+
+    .text-info {
+        color: #b8d3ff !important;
+    }
+
+    .text-warning {
+        color: #ffbb8d !important;
+    }
+
+    .text-danger {
+        color: #b74d4d !important;
+    }
+</style>

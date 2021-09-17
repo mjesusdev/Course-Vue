@@ -1,12 +1,12 @@
 <template>
   <div class="pokemon-container mt-4 mb-4">
     <img :src="imgSrc" 
-      class="hidden-pokemon"
+      class="img-fluid hidden-pokemon"
       alt="pokemon">
 
     <img v-if="showPokemon"
       :src="imgSrc" 
-      class="fade-in"
+      class="img-fluid fade-in"
       alt="pokemon">
   </div>
 </template>
@@ -40,7 +40,7 @@
   /* Pokemon Picture */
   .pokemon-container {
     height: 200px;
-    width: 400px;
+    /* width: 400px; */
     margin: 0 auto;
     position: relative;
   }
