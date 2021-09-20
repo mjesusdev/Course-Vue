@@ -1,7 +1,7 @@
 # Section 04-pokemon-game (Pokemon Game - Vue 🎉)
 
-This project is a Pokemon Game, that includes 600 pokemons who are distributed randomly.
-(Worked with API from [pokeapi](https://pokeapi.co/)).
+This project is a Pokemon Game, that includes 600 pokemons who are distributed randomly ✅
+(Work with API from [pokeapi](https://pokeapi.co/)).
 
 🚀 [Live Demo in Netlify](https://pokemon-game-vue-mj.netlify.app/)
 
