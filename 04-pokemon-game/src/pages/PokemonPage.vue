@@ -96,6 +96,6 @@
     }
 
     .text-danger {
-        color: #b74d4d !important;
+        color: #f44545!important;
     }
 </style>
