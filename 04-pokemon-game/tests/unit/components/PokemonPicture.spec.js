@@ -35,7 +35,19 @@ describe('PokemonPicture component', () => {
     })
 
     test('should show the pokemon if (showPokemon == true)', () => {
-        
+        const wrapper = shallowMount(PokemonPicture, {
+            props: {
+                pokemonId: 100,
+                showPokemon: true
+            }
+        })
+
+        const img1 = wrapper.find('img')
+
+        expect( img1.exists() ).toBeTruthy()
+
+        expect( img1.classes('hidden-pokemon') ).toBe(false)
+        expect( img1.classes('fade-in') ).toBe(true)
     })
 
 })
