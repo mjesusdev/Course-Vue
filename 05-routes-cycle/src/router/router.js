@@ -3,6 +3,11 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 const routes = [
     { 
         path: '/',
+        redirect: '/home'
+    },
+    { 
+        path: '/home',
+        name: 'home',
         component: () => import(
             /* webpackChunkName: "ListPage" */
             '@/modules/pokemon/pages/ListPage'
@@ -10,13 +15,14 @@ const routes = [
     },
     { 
         path: '/about',
+        name: 'about',
         component: () => import(
             /* webpackChunkname: "AboutPage" */ 
             '@/modules/pokemon/pages/AboutPage'
-        ) 
+        )
     },
     { 
-        path: '/:id',
+        path: '/pokemon-id/:id',
         name: 'pokemon-id',
         component: () => import(
             /* webpackChunkname: "PokemonPage" */ 
