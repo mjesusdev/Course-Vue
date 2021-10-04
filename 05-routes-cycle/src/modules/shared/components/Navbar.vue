@@ -27,9 +27,13 @@
         data() {
             return {
                 links: [
-                    { to: '/home', name: 'Pokemons' },
-                    { to: '/pokemonid/50', name: 'By Id'},
-                    { to: '/about', name: 'About' },
+                    { to: 'pokemon-home', name: 'Pokemons' },
+                    { to: 'pokemon-id', name: 'By Id', id: 151},
+                    { to: 'pokemon-about', name: 'About' },
+
+                    { to: 'dbz-characters', name: 'Characters' },
+                    { to: 'dbz-about', name: 'DBZ-About' },
+
                     { to: 'https://duckduckgo.com', name: 'DuckDuckGo'}
                 ]
             }

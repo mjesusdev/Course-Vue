@@ -2,16 +2,19 @@
     <li class="nav-item">
         <a v-if="isExternalLink" 
             target="_blank"
-            :href="link.to" class="nav-link normal-link">{{ link.name }}
+            :href="link.to" 
+            class="nav-link normal-link"
+        >
+            {{ link.name }}
         </a>
 
         <router-link
             v-else
-            :to="link.to"
+            :to="route"
             class="nav-link"
-            v-slot="{ href, isActive }"
+            v-slot="{ isActive }"
         >
-            <a :href='href' 
+            <a :href='href'
                 :class=" isActive ? 'is-active' : 'normal-link' ">
                 {{ link.name }}
             </a>
@@ -30,6 +33,11 @@
         computed: {
             isExternalLink() {
                 return this.link.to.startsWith('https');
+            },
+            route() {
+                return this.link.id === undefined 
+                    ? { name: this.link.to }
+                    : { name: this.link.to, params: { id: this.link.id } }
             }
         }
     }
