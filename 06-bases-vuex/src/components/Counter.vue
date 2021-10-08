@@ -11,6 +11,8 @@
     <h1>mapState</h1>
     <h2>mapState: {{ count }} </h2>
     <h2>LastMutation: {{ lastMutation }}</h2>
+
+    <h2>Direct getter: {{ $store.getters.squareCount }}</h2>
   </div>
 </template>
 
@@ -21,7 +23,7 @@
     export default {
         computed: {
             countComputed() {
-                return this.$store.state.count
+                return this.$store.state.counter.count
             },
             ...mapState(['count', 'lastMutation', 'isLoading'])
             /* ...mapState({
@@ -32,13 +34,13 @@
 
         methods: {
             increment() {
-                this.$store.commit('increment')
+                this.$store.commit('counter/increment')
             },
             incrementBy() {
-                this.$store.commit('incrementBy', 5)
+                this.$store.commit('counter/incrementBy', 5)
             },
-            /* ...mapActions(['incrementRandomInt']) */
-            ...mapActions({
+            /* ...mapActions( 'counter', ['incrementRandomInt']) */
+            ...mapActions( 'counter', {
                 randomInt: 'incrementRandomInt'
             })
         }
