@@ -14,7 +14,7 @@
   export default {
     methods: {
       goToDaybook() {
-        this.$router.push('/daybook');
+        this.$router.push({ name: 'no-entry'});
       }
     }
   }
