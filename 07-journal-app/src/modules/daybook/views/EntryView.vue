@@ -32,7 +32,9 @@
             ></textarea>
         </div>
 
-        <Fab />
+        <Fab 
+            icon="fa-save"
+        />
 
         <img src="https://bit.ly/3naP2Z2" class="p-3" alt="Img StarWars">
     </div>
