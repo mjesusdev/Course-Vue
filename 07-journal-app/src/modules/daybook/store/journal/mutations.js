@@ -12,6 +12,11 @@ export const updateEntry = ( state, entry ) => {
     state.entries[idx] = entry
 }
 
-export const addEntry = () => {
+export const addEntry = ( state, entry ) => {
+    //* state -> entries -> New Entry should the first
+    state.entries = [ entry, ...state.entries ]
+}
 
+export const deleteEntry = ( state, id ) => {
+    state.entries = state.entries.filter( entry => entry.id !== id )
 }
