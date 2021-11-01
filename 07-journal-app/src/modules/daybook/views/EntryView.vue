@@ -9,12 +9,20 @@
                 </div>
 
                 <div>
+                    <input
+                        type="file"
+                        @change="onSelectedImage"
+                        ref="imageSelector"
+                        v-show="false"
+                        accept="image/png, image/jpeg"
+                    >
+
                     <button v-if="entry.id" class="btn btn-danger mx-2" @click="onDeleteEntry">
                         Delete
                         <i class="fa fa-trash-alt"></i>
                     </button>
 
-                    <button class="btn btn-primary">
+                    <button class="btn btn-primary" @click="onSelectImage">
                         Upload Photo
                         <i class="fa fa-upload"></i>
                     </button>
@@ -31,7 +39,11 @@
                 ></textarea>
             </div>
 
-            <img src="https://bit.ly/3naP2Z2" class="p-3" alt="Img StarWars">
+            <img 
+                v-if="entry.picture && !localImage "
+                :src="entry.picture"
+                class="p-3" 
+                alt="Img Upload">
         </template>
 
         <Fab
@@ -48,7 +60,8 @@
 
     import Swal from 'sweetalert2'
 
-    import getDayMonthYear from '../helpers/getDayMonthYear';
+    import getDayMonthYear from '../helpers/getDayMonthYear'
+    import uploadImage from '../helpers/uploadImage'
 
     export default {
         props: {
@@ -64,9 +77,9 @@
 
         data() {
             return {
-                entry: {
-                    text: ''
-                }
+                entry: null,
+                localImage: null,
+                file: null
             }
         },
 
@@ -106,12 +119,15 @@
             },
 
             async saveEntry() {
-
                 new Swal({
                     title: 'Wait please...',
                     allowOutsideClick: false
                 })
                 Swal.showLoading()
+
+                const picture = await uploadImage( this.file )
+
+                this.entry.picture = picture
 
                 if ( this.entry.id ) {
                     // Update
@@ -122,11 +138,11 @@
                     this.$router.push({ name: 'entry', params: { id } })
                 }
 
+                this.file = null
                 Swal.fire('Save', 'Entry saved ✅', 'success')
             },
 
             async onDeleteEntry() {
-
                 const { isConfirmed } = await Swal.fire({
                     title: '¿Are you sure?',
                     text: 'If you delete this, not recovery',
@@ -145,6 +161,25 @@
 
                     Swal.fire('Deleted','','success')
                 }
+            },
+
+            onSelectedImage( event ) {
+                const file = event.target.files[0]
+                if ( !file ) {
+                    this.localImage = null
+                    this.file = null
+                    return
+                }
+
+                this.file = file
+
+                const fr = new FileReader()
+                fr.onload = () => this.localImage = fr.result
+                fr.readAsDataURL( file )
+            },
+
+            onSelectImage() {
+                this.$refs.imageSelector.click()
             }
         },
 
