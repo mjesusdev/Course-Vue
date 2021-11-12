@@ -22,7 +22,6 @@ export const loadEntries = async({ commit }) => {
     }
 
     commit('setEntries', entries)
-
 }
 
 export const updateEntry = async({ commit }, entry) => {
@@ -32,10 +31,11 @@ export const updateEntry = async({ commit }, entry) => {
 
     // await journalApi.put( PATH .json, dateToSave )
     const resp = await journalApi.put( `/entries/${ entry.id }.json`, dataToSave )
-    console.log(resp);
 
-    // Commit de una mutación
-    commit('updateEntry', { ...entry })
+    dataToSave.id = entry.id
+
+    // Commit mutation -> updateEntry
+    commit('updateEntry', { ...dataToSave })
 }
 
 export const createEntry = async({ commit }, entry) => {
