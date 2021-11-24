@@ -40,10 +40,16 @@
             </div>
 
             <img 
-                v-if="entry.picture && !localImage "
-                :src="entry.picture"
-                class="p-3" 
-                alt="Img Upload">
+                v-if="entry.picture && !localImage"
+                :src="entry.picture" 
+                alt="entry-picture"
+                class="img-thumbnail">
+
+            <img 
+                v-if="localImage"
+                :src="localImage" 
+                alt="entry-picture"
+                class="img-thumbnail">
         </template>
 
         <Fab
@@ -152,13 +158,14 @@
                 })
 
                 if ( isConfirmed ) {
-                    new Swal({
+                    Swal.fire({
                         title: 'Wait please',
                         allowOutsideClick: false
                     })
                     Swal.showLoading()
+
                     await this.deleteEntry( this.entry.id )
-                    this.$router.push({ name: 'no-entry'})
+                    this.$router.push({ name: 'no-entry' })
 
                     Swal.fire('Deleted','','success')
                 }
