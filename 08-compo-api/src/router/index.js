@@ -39,6 +39,11 @@ const routes = [
     path: '/todo',
     name: 'todo',
     component: () => import(/* webpackChunkName: "Todo" */ '../views/TodoVuex.vue')
+  },
+  {
+    path: '/slots',
+    name: 'slots',
+    component: () => import(/* webpackChunkName: "Slots" */ '../views/CustomSlots.vue')
   }
 ]
 
