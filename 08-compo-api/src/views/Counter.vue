@@ -1,9 +1,9 @@
 <template>
     <div>
-        <h1>Counter View</h1>
-        <h2>{{ counter }}</h2>
-        <button @click="increase">+1</button>
-        <button @click="decrease">-1</button>
+        <h1 class="text-success">Counter View</h1>
+        <h2 class="">{{ counter }}</h2>
+        <button class="btn btn-success m-1" @click="increase">+1</button>
+        <button class="btn btn-success m-1" @click="decrease">-1</button>
     </div>
 </template>
 

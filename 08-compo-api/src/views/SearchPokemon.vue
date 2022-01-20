@@ -1,8 +1,8 @@
 <template>
     <div>
-        <h1>Find a Pokemon: {{ pokemonId }}</h1>
+        <h1 class="text-success">Find a Pokemon: {{ pokemonId }}</h1>
         <form @submit.prevent="onSubmit">
-            <input 
+            <input
                 type="number"
                 placeholder="Pokemon ID"
                 v-model="pokemonId"

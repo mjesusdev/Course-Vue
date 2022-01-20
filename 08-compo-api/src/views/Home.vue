@@ -2,16 +2,16 @@
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
 
-    <h1>Reactive vs Ref</h1>
-    <h3>{{ ironman }}</h3>
-    <h3>{{ hulk }}</h3>
+    <h1 class="text-success">Reactive vs Ref</h1>
+    <h3 class="mt-2">{{ ironman }}</h3>
+    <h3 class="mt-2">{{ hulk }}</h3>
 
-    <button @click="changeIronman">Change Ironman</button>
-    <button @click="changeHulk">Change Hulk</button>
+    <button class="btn btn-success m-1" @click="changeIronman">Change Ironman</button>
+    <button class="btn btn-success m-1" @click="changeHulk">Change Hulk</button>
 
-    <h3>Ironman: {{ ironmanIsAlive }}</h3>
-    <h3>Hulk: {{ hulkIsAlive }}</h3>
-    <button @click="changeStatus">Change status</button>
+    <h3 class="mt-2">Ironman: {{ ironmanIsAlive }}</h3>
+    <h3 class="mt-2">Hulk: {{ hulkIsAlive }}</h3>
+    <button class="btn btn-success" @click="changeStatus">Change status</button>
   </div>
 </template>
 
@@ -20,9 +20,7 @@
 
   export default {
       name: 'Home',
-      components: {
-
-      },
+      components: { },
       setup() {
           const ironman = ref({ name: 'Tony', age: 50 })
           const hulk    = reactive({ name: 'Bruce', age: 50 })

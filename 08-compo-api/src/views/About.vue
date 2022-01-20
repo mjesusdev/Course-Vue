@@ -1,12 +1,11 @@
 <template>
   <div class="about">
-    <h1>{{ title }}</h1>
-    <button @click="changeTitle">Change Title</button>
+    <h1 class="text-success">{{ title }}</h1>
+    <button class="btn btn-success" @click="changeTitle">Change Title</button>
   </div>
 </template>
 
 <script>
-
   import {
     ref,
     onBeforeMount,
