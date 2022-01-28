@@ -1,3 +1,4 @@
+import { computed } from 'vue'
 import { useStore } from 'vuex'
 
 const useAuth = () => {
@@ -13,9 +14,17 @@ const useAuth = () => {
         return resp
     }
 
+    const checkAuthStatus = async() => {
+        const resp = await store.dispatch('auth/checkAuthentication')
+        return resp
+    }
+
     return {
+        checkAuthStatus,
         createUser,
-        loginUser
+        loginUser,
+
+        authStatus: computed(() => store.getters['auth/currentState'] )
     }
 }
 
