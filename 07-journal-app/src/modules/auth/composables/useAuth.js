@@ -19,12 +19,19 @@ const useAuth = () => {
         return resp
     }
 
+    const logout = () => {
+        store.commit('auth/logout')
+        store.commit('journal/clearEntries')
+    }
+
     return {
         checkAuthStatus,
         createUser,
         loginUser,
+        logout,
 
-        authStatus: computed(() => store.getters['auth/currentState'] )
+        authStatus: computed(() => store.getters['auth/currentState'] ),
+        username:   computed(() => store.getters['auth/username'] ),
     }
 }
 
