@@ -2,6 +2,8 @@ import { createStore } from 'vuex'
 import journal from '@/modules/daybook/store/journal'
 import { journalState } from '../../../../mock-data/test-journal-state'
 
+import authApi from '@/api/authApi';
+
 const createVuexStore = ( initialState ) => 
     createStore({
         modules: {
@@ -14,6 +16,18 @@ const createVuexStore = ( initialState ) =>
     })
 
 describe('Vuex - Tests in Journal Module', () => {
+
+    beforeAll( async() => {
+        const { data } = await authApi.post(':signInWithPassword', {
+            email: 'test@test.com',
+            password: '123456',
+            returnSecureToken: true
+        })
+
+        localStorage.setItem('idToken', data.idToken)
+    })
+
+
     test('this is initial state, should have this store', () => {
         const store = createVuexStore(journalState)
         const { isLoading, entries } = store.state.journal
@@ -101,7 +115,7 @@ describe('Vuex - Tests in Journal Module', () => {
 
         await store.dispatch('journal/loadEntries')
         
-        expect( store.state.journal.entries.length ).toBe(3)
+        expect( store.state.journal.entries.length ).toBe(5)
     })
     
     test('actions: updateEntry', async() => {
@@ -136,7 +150,7 @@ describe('Vuex - Tests in Journal Module', () => {
         expect( store.state.journal.entries.find( e => e.id === id ) ).toBeTruthy()
         
         // dispatch deleteEntry
-        await store.dispatch('journal/deleteEntry')
+        await store.dispatch('journal/deleteEntry', id)
         
         // the new entry should not exists in the state.journal.entries...
         expect( store.state.journal.entries.find( e => e.id === id ) ).toBeFalsy()
