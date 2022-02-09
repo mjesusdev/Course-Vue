@@ -109,27 +109,68 @@ describe('Vuex: Tests in authModule', () => {
             idToken: null,
             refreshToken: null
         })
-    
-       const newUser = { name: 'Test User', email: 'test2@test.com', password: '123456' }
-
-       // Action: SignIn
-       await store.dispatch('auth/signInUser', newUser)
-       const { idToken } = store.state.auth
-
-       // Delete user
-       const deleteResp = await axios.post('https://identitytoolkit.googleapis.com/v1/accounts:delete?key= ' + apiKey, {
-           idToken
-       })
-
-       // Create user
-       const resp = await store.dispatch('auth/createUser', newUser)
+        
+        const newUser = { name: 'Test User', email: 'test2@test.com', password: '123456' }
+        
+        // Action: SignIn
+        await store.dispatch('auth/signInUser', newUser)
+        const { idToken } = store.state.auth
+        
+        // Delete user
+        const deleteResp = await axios.post('https://identitytoolkit.googleapis.com/v1/accounts:delete?key= ' + apiKey, {
+            idToken
+        })
+        
+        // Create user
+        const resp = await store.dispatch('auth/createUser', newUser)
        expect(resp).toEqual({ ok:true })
-
+       
        const { status, user, idToken: token, refreshToken } = store.state.auth
        
        expect(status).toBe('authenticated')
        expect(user).toMatchObject({ name: 'Test User', email: 'test2@test.com' })
        expect(typeof token).toBe('string')
        expect(typeof refreshToken).toBe('string')
+    })
+    
+    test('Actions: CheckAuthentication - Positive', async() => {
+        const store = createVuexStore({
+            status: 'not-authenticated',
+            user: null,
+            idToken: null,
+            refreshToken: null
+        })
+        
+        // SignIn
+        const signInResp = await store.dispatch('auth/signInUser', { email: 'test@test.com', password: '123456' })
+        const { idToken } = store.state.auth
+        store.commit('auth/logout')
+        
+        localStorage.setItem('idToken', idToken)
+        const checkResp = await store.dispatch('auth/checkAuthentication')
+        const { status, user, idToken: token, refreshToken } = store.state.auth
+        
+        expect(status).toBe('authenticated')
+        expect(user).toMatchObject({ name: 'User Test', email: 'test@test.com' })
+        expect(typeof token).toBe('string')
+    })
+
+    test('Actions: checkAuthentication - Negative', async() => {
+        const store = createVuexStore({
+            status: 'not-authenticated',
+            user: null,
+            idToken: null,
+            refreshToken: null
+        })
+
+        localStorage.removeItem('idToken')
+        const checkResp1 = await store.dispatch('auth/checkAuthentication')
+        expect(checkResp1).toEqual({ ok:false, message: 'No token!' })
+        expect(store.state.auth.status).toBe('not-authenticated')
+        
+        localStorage.setItem('idToken', 'ABC-123')
+        const checkResp2 = await store.dispatch('auth/checkAuthentication')
+        expect(checkResp2).toEqual({ ok:false, message: 'INVALID_ID_TOKEN' })
+        expect(store.state.auth.status).toBe('not-authenticated')
     })
 })
