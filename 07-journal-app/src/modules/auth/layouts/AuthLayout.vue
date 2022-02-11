@@ -15,6 +15,6 @@
 </script>
 
 <style lang="scss" scoped>
-    @import '../css/auth.css';
-    @import '../css/util.css';
+    @import '../css/auth.min.css';
+    @import '../css/util.min.css';
 </style>
