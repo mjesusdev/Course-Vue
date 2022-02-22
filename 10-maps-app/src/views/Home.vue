@@ -1,16 +1,16 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-  </div>
+  <MapView />
 </template>
 
 <script lang="ts">
   import { defineComponent } from 'vue';
   import { usePlacesStore } from '../composables/usePlacesStore';
 
+  import MapView from '../components/mapview/MapView.vue';
+
   export default defineComponent({
     name: 'Home',
-    components: {},
+    components: { MapView },
     setup() {
       usePlacesStore();
     }
