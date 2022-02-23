@@ -1,5 +1,9 @@
 <template>
-  <MapView />
+  <div>
+    <MapView />
+
+    <MyLocationBtn />
+  </div>
 </template>
 
 <script lang="ts">
@@ -7,10 +11,11 @@
   import { usePlacesStore } from '../composables/usePlacesStore';
 
   import MapView from '../components/mapview/MapView.vue';
+  import MyLocationBtn from '../components/my-location-btn/MyLocationBtn.vue';
 
   export default defineComponent({
     name: 'Home',
-    components: { MapView },
+    components: { MapView, MyLocationBtn },
     setup() {
       usePlacesStore();
     }
