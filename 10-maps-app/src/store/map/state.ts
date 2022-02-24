@@ -1,4 +1,4 @@
-import Mapboxgl from "mapbox-gl";
+import Mapboxgl from 'mapbox-gl';
 
 export interface MapState {
     map?: Mapboxgl.Map;
