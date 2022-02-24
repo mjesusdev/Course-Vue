@@ -6,6 +6,7 @@
             class="form-control" 
             type="text" 
             placeholder="Search sites..."
+            v-model="searchTerm"
         />
 
         <SearchResults />
