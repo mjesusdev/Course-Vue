@@ -1,10 +1,10 @@
-/* import { Feature } from '@/interfaces/places'; */
+import { Feature } from '@/interfaces/places';
 
 export interface PlacesState {
     isLoading: boolean;
     userLocation?: [number, number]; // lng, lat
     isLoadingPlaces: boolean;
-    /* places: Feature[]; */
+    places: Feature[];
 }
 
 function state(): PlacesState {
@@ -12,7 +12,7 @@ function state(): PlacesState {
         isLoading: true,
         userLocation: undefined,
         isLoadingPlaces: false,
-        /* places: [], */
+        places: [],
     }
 }
 

@@ -1,35 +1,33 @@
 <script lang="ts" src="./SearchResults.ts" />
 
 <template>
-    <ul class="list-group mt-3">
-        <li class="list-group-item list-group-item-action">
-            <h5>Name of the site</h5>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-            <div align="right">
-                <button class="btn btn-outline-primary btn-sm">
-                    Address
-                </button>
-            </div>
-        </li>
-        <li class="list-group-item list-group-item-action">
-            <h5>Name of the site</h5>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-            <div align="right">
-                <button class="btn btn-outline-primary btn-sm">
-                    Address
-                </button>
-            </div>
-        </li>
-        <li class="list-group-item list-group-item-action">
-            <h5>Name of the site</h5>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-            <div align="right">
-                <button class="btn btn-outline-primary btn-sm">
-                    Address
-                </button>
-            </div>
-        </li>
-    </ul>
+    <div>
+        <div v-if="isLoadingPlaces" class="alert alert-primary text-center">
+            <h4>Loading...</h4>
+            <span>Wait please!</span>
+        </div>
+
+        <ul v-else-if="places.length > 0" class="list-group mt-3">
+            <li 
+                v-for="place in places" 
+                class="list-group-item list-group-item-action"
+                :class="{ 'active': place.id === activePlace }"
+                :key="place.id" 
+                @click="onPlaceClick(place)"
+            >
+                <h5>{{ place.text }}</h5>
+                <p>{{ place.place_name }}.</p>
+                <div align="right">
+                    <button 
+                        class="btn btn-outline-primary btn-sm"
+                        :class="( place.id === activePlace ) ? 'btn-outline-light' : 'btn-outline-primary'"
+                    >
+                        Address
+                    </button>
+                </div>
+            </li>
+        </ul>
+    </div>
 </template>
 
 <style scoped>
