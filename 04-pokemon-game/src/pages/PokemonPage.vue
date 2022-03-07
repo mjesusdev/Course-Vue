@@ -56,9 +56,9 @@
 
                 if ( selectedId === this.pokemon.id ) {
                     this.message = `🎉 ¡Correcto! es ${ this.pokemon.name } 🎉`
-                    this.type = 'text-warning'
+                    this.type = 'text-success'
                 } else {
-                    this.message = `😆 ¡Incorrecto! era ${ this.pokemon.name } 😅`
+                    this.message = `🙈 ¡Incorrecto! era ${ this.pokemon.name } 🙈`
                     this.type = 'text-danger'
                 }
             },
@@ -91,11 +91,11 @@
         color: #b8d3ff !important;
     }
 
-    .text-warning {
-        color: #ffbb8d !important;
+    .text-success {
+        color: #4baf8a !important;
     }
 
     .text-danger {
-        color: #f44545!important;
+        color: #f44545 !important;
     }
 </style>

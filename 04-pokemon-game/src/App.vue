@@ -27,6 +27,6 @@ export default {
   }
 
   body {
-    background-image: url('/img/pokemon-ball.png');
+    background-image: url('/img/pexels-pokeball.jpg');
   }
 </style>
